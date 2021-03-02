@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blockchain.Business;
+using System;
 using System.Linq;
 
 namespace Blockchain.ConsolApp
@@ -9,37 +10,43 @@ namespace Blockchain.ConsolApp
         {
             Console.WriteLine("Hello World!");
 
-            var blockchain = new Business.Blockchain();
+            var proofer = new Proofer();
+
+            var blockchain = new Business.Blockchain(proofer);
 
             Console.WriteLine("Created new Blockchain...");
 
             Console.WriteLine("Mining a new block...");
             var result = blockchain.MineBlock();
             Console.WriteLine($"Mined block, result index {result.Index}, proof {result.Proof}...");
+
             Console.WriteLine("Adding transaction...");
             var index = blockchain.AddTransaction("Anna", "Johan", 2);
             Console.WriteLine($"Transaction added, will be in block index {index}...");
-
             Console.WriteLine("Mining next block...");
             result = blockchain.MineBlock();
             Console.WriteLine($"Mined block, result index {result.Index}, proof {result.Proof}...");
+
             Console.WriteLine("Adding transaction...");
             index = blockchain.AddTransaction("Bertil", "Johan", 3);
             Console.WriteLine($"Transaction added, will be in block index {index}...");
-
             Console.WriteLine("Mining next block...");
             result = blockchain.MineBlock();
             Console.WriteLine($"Mined block, result index {result.Index}, proof {result.Proof}...");
+
             Console.WriteLine("Adding transaction...");
             index = blockchain.AddTransaction("Caesar", "Johan", 4);
             Console.WriteLine($"Transaction added, will be in block index {index}...");
-
             Console.WriteLine("Mining next block...");
             result = blockchain.MineBlock();
             Console.WriteLine($"Mined block, result index {result.Index}, proof {result.Proof}...");
+
             Console.WriteLine("Adding transaction...");
             index = blockchain.AddTransaction("Disa", "Johan", 5);
             Console.WriteLine($"Transaction added, will be in block index {index}...");
+            Console.WriteLine("Mining next block...");
+            result = blockchain.MineBlock();
+            Console.WriteLine($"Mined block, result index {result.Index}, proof {result.Proof}...");
 
             Console.WriteLine("Listing chain...");
 
@@ -48,7 +55,7 @@ namespace Blockchain.ConsolApp
             foreach (var block in blockchain.Chain)
             {
                 Console.WriteLine($"Listing block {block.Index}, proof {block.Proof}, previous hash matches? {block.PreviousHash == previousHash}");
-                previousHash = blockchain.CreateHash(block);
+                previousHash = Hasher.CreateHash(block);
 
                 if (!block.Transactions.Any())
                 {
@@ -68,8 +75,8 @@ namespace Blockchain.ConsolApp
             var previousProof = 100;
             foreach (var block in blockchain.Chain)
             {
-                Console.WriteLine($"Proof is {block.Proof} - Valid? {blockchain.ValidateProof(previousProof, block.Proof)}, good hash? {previousHash == block.PreviousHash}.");
-                previousHash = blockchain.CreateHash(block);
+                Console.WriteLine($"Proof is {block.Proof} - Valid? {proofer.ValidateProof(previousProof, block.Proof)}, good hash? {previousHash == block.PreviousHash}.");
+                previousHash = Hasher.CreateHash(block);
                 previousProof = block.Proof;
             }
         }

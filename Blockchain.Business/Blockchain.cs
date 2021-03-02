@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace Blockchain.Business
 {
@@ -15,22 +12,24 @@ namespace Blockchain.Business
     {
         public List<Block> Chain { get; }
         private readonly List<Transaction> _tx;
+        private readonly IProofer proofer;
 
-        public Blockchain()
+        public Blockchain(IProofer proofer)
         {
             Chain = new List<Block>();
             _tx = new List<Transaction>();
             CreateBlock("1", 100);
+            this.proofer = proofer;
         }
 
-        public MineResult MineBlock()
+        public MiningResult MineBlock()
         {
-            var proof = GetProofOfWork(LastBlock.Proof);
+            var proof = proofer.GetProofOfWork(LastBlock.Proof);
             AddTransaction("0", "Me", 1);
-            var previousHash = CreateHash(LastBlock);
+            var previousHash = Hasher.CreateHash(LastBlock);
             var block = CreateBlock(previousHash, proof);
 
-            var response = new MineResult
+            var response = new MiningResult
             {
                 Index = block.Index,
                 Proof = block.Proof,
@@ -38,7 +37,7 @@ namespace Blockchain.Business
             return response;
         }
 
-        public Block CreateBlock(string previousHash, int proof)
+        private Block CreateBlock(string previousHash, int proof)
         {
             var block = new Block
             {
@@ -46,7 +45,7 @@ namespace Blockchain.Business
                 Timestamp = DateTime.UtcNow,
                 Transactions = _tx.ToArray(),
                 Proof = proof,
-                PreviousHash = previousHash ?? CreateHash(Chain.LastOrDefault())
+                PreviousHash = previousHash ?? Hasher.CreateHash(Chain.LastOrDefault())
             };
             _tx.Clear();
             Chain.Add(block);
@@ -63,39 +62,6 @@ namespace Blockchain.Business
             });
             return LastBlock.Index + 1;
         }
-
-        public string CreateHash(Block block)
-        {
-            var json = JsonConvert.SerializeObject(block);
-            var bytes = Encoding.UTF8.GetBytes(json);
-            var hash = SHA256.Create().ComputeHash(bytes);
-            return GetHexString(hash);
-        }
-
-        public int GetProofOfWork(int lastProof)
-        {
-            var proof = 0;
-            while (!ValidateProof(lastProof, proof))
-            {
-                proof += 1;
-            }
-            return proof;
-        }
-
-        public bool ValidateProof(int lastproof, int proof)
-        {
-            var guess = Encoding.UTF8.GetBytes($"{lastproof}{proof}");
-            var guessHash = SHA256.Create().ComputeHash(guess);
-            var hashLine = GetHexString(guessHash);
-            var result = hashLine.Contains("0000");
-            return result;
-        }
-
-        private string GetHexString(byte[] bytes)
-        {
-            return bytes.Select(b => $"{b:X}").Aggregate("", (a, b) => a + b);
-        }
-
 
         public Block LastBlock => Chain.LastOrDefault();
     }

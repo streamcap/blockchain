@@ -1,6 +1,6 @@
 ﻿namespace Blockchain.Business
 {
-    public class MineResult
+    public class MiningResult
     {
         public string Message { get; internal set; }
         public int Index { get; internal set; }
