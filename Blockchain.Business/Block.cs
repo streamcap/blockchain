@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Blockchain.Business
@@ -11,7 +10,7 @@ namespace Blockchain.Business
         [JsonProperty]
         public DateTime Timestamp { get; set; }
         [JsonProperty]
-        public List<Transaction> Transactions { get; set; }
+        public Transaction[] Transactions { get; set; }
         [JsonProperty]
         public int Proof { get; set; }
         [JsonProperty]

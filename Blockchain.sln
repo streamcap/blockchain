@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Web", "Blockchain.Web\Blockchain.Web.csproj", "{1095DEF8-095E-421A-BF81-F5EB0AC68CCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Business", "Blockchain.Business\Blockchain.Business.csproj", "{0C54D642-7F91-49DE-ABDF-75A0078784F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Business", "Blockchain.Business\Blockchain.Business.csproj", "{0C54D642-7F91-49DE-ABDF-75A0078784F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.ConsolApp", "Blockchain.ConsolApp\Blockchain.ConsolApp.csproj", "{8E72278C-8218-4B66-BB1B-8BEB06444676}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1095DEF8-095E-421A-BF81-F5EB0AC68CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1095DEF8-095E-421A-BF81-F5EB0AC68CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1095DEF8-095E-421A-BF81-F5EB0AC68CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1095DEF8-095E-421A-BF81-F5EB0AC68CCF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C54D642-7F91-49DE-ABDF-75A0078784F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C54D642-7F91-49DE-ABDF-75A0078784F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C54D642-7F91-49DE-ABDF-75A0078784F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C54D642-7F91-49DE-ABDF-75A0078784F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E72278C-8218-4B66-BB1B-8BEB06444676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E72278C-8218-4B66-BB1B-8BEB06444676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E72278C-8218-4B66-BB1B-8BEB06444676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E72278C-8218-4B66-BB1B-8BEB06444676}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,32 +7,49 @@ using Newtonsoft.Json;
 
 namespace Blockchain.Business
 {
+    /// <summary>
+    /// https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
+    /// </summary>
+
     public class Blockchain
     {
-        private readonly List<Block> _chain;
+        public List<Block> Chain { get; }
         private readonly List<Transaction> _tx;
-        private readonly SHA256 _shaEngine;
 
         public Blockchain()
         {
-            _shaEngine = SHA256.Create();
-            _chain = new List<Block>();
+            Chain = new List<Block>();
             _tx = new List<Transaction>();
             CreateBlock("1", 100);
+        }
+
+        public MineResult MineBlock()
+        {
+            var proof = GetProofOfWork(LastBlock.Proof);
+            AddTransaction("0", "Me", 1);
+            var previousHash = CreateHash(LastBlock);
+            var block = CreateBlock(previousHash, proof);
+
+            var response = new MineResult
+            {
+                Index = block.Index,
+                Proof = block.Proof,
+            };
+            return response;
         }
 
         public Block CreateBlock(string previousHash, int proof)
         {
             var block = new Block
             {
-                Index = _chain.Count + 1,
+                Index = Chain.Count + 1,
                 Timestamp = DateTime.UtcNow,
-                Transactions = _tx,
+                Transactions = _tx.ToArray(),
                 Proof = proof,
-                PreviousHash = previousHash ?? CreateHash(_chain.LastOrDefault())
+                PreviousHash = previousHash ?? CreateHash(Chain.LastOrDefault())
             };
             _tx.Clear();
-            _chain.Add(block);
+            Chain.Add(block);
             return block;
         }
 
@@ -50,30 +67,36 @@ namespace Blockchain.Business
         public string CreateHash(Block block)
         {
             var json = JsonConvert.SerializeObject(block);
-            var bytes = Encoding.Unicode.GetBytes(json);
-            var hash = _shaEngine.ComputeHash(bytes);
-            return Encoding.Unicode.GetString(hash);
+            var bytes = Encoding.UTF8.GetBytes(json);
+            var hash = SHA256.Create().ComputeHash(bytes);
+            return GetHexString(hash);
         }
 
-        public int ProofOfWork(int lastProof)
+        public int GetProofOfWork(int lastProof)
         {
             var proof = 0;
             while (!ValidateProof(lastProof, proof))
             {
                 proof += 1;
             }
-
             return proof;
         }
 
-        private bool ValidateProof(int lastproof, int proof)
+        public bool ValidateProof(int lastproof, int proof)
         {
-            var guess = Encoding.Unicode.GetBytes($"{lastproof}{proof}");
-            var guessHash = _shaEngine.ComputeHash(guess);
-            return Encoding.Unicode.GetString(guessHash).StartsWith("0000");
+            var guess = Encoding.UTF8.GetBytes($"{lastproof}{proof}");
+            var guessHash = SHA256.Create().ComputeHash(guess);
+            var hashLine = GetHexString(guessHash);
+            var result = hashLine.Contains("0000");
+            return result;
+        }
+
+        private string GetHexString(byte[] bytes)
+        {
+            return bytes.Select(b => $"{b:X}").Aggregate("", (a, b) => a + b);
         }
 
 
-        public Block LastBlock => _chain.LastOrDefault();
+        public Block LastBlock => Chain.LastOrDefault();
     }
 }
