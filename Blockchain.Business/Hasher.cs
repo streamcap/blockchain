@@ -18,7 +18,7 @@ namespace Blockchain.Business
 
         public static string GetHexString(byte[] bytes)
         {
-            return bytes.Select(b => $"{b:X}").Aggregate("", (a, b) => a + b);
+            return bytes.Select(b => $"{b:X}").Aggregate(new StringBuilder(), (a, b) => a.Append(b)).ToString();
         }
     }
 }
