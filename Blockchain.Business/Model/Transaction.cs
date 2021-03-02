@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Blockchain.Business
+namespace Blockchain.Business.Model
 {
     public class Transaction
     {

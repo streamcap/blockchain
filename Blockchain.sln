@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Business", "Blockchain.Business\Blockchain.Business.csproj", "{0C54D642-7F91-49DE-ABDF-75A0078784F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.ConsolApp", "Blockchain.ConsolApp\Blockchain.ConsolApp.csproj", "{8E72278C-8218-4B66-BB1B-8BEB06444676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.ConsoleApp", "Blockchain.ConsolApp\Blockchain.ConsoleApp.csproj", "{8E72278C-8218-4B66-BB1B-8BEB06444676}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.BusinessTests", "Blockchain.BusinessTests\Blockchain.BusinessTests.csproj", "{2068152B-90B1-466F-B9FE-E449C162758F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.BusinessTests", "Blockchain.BusinessTests\Blockchain.BusinessTests.csproj", "{2068152B-90B1-466F-B9FE-E449C162758F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

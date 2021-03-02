@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Blockchain.Business.Model;
 
 namespace Blockchain.Business
 {
@@ -12,19 +13,19 @@ namespace Blockchain.Business
     {
         public List<Block> Chain { get; }
         private readonly List<Transaction> _tx;
-        private readonly IProofer proofer;
+        private readonly IProofHandler _proofHandler;
 
-        public Blockchain(IProofer proofer)
+        public Blockchain(IProofHandler proofHandler)
         {
             Chain = new List<Block>();
             _tx = new List<Transaction>();
             CreateBlock("1", 100);
-            this.proofer = proofer;
+            this._proofHandler = proofHandler;
         }
 
         public MiningResult MineBlock()
         {
-            var proof = proofer.GetProofOfWork(LastBlock.Proof);
+            var proof = _proofHandler.GetProofOfWork(LastBlock.Proof);
             AddTransaction("0", "Me", 1);
             var previousHash = Hasher.CreateHash(LastBlock);
             var block = CreateBlock(previousHash, proof);

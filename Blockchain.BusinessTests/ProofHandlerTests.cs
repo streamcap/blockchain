@@ -1,22 +1,23 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Blockchain.Business;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Blockchain.Business.Tests
+namespace Blockchain.BusinessTests
 {
-    [TestClass()]
-    public class ProoferTests
+    [TestClass]
+    public class ProofHandlerTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void GetProofOfWorkTest()
         {
-            var p = new Proofer();
+            var p = new ProofHandler();
             var a = p.GetProofOfWork(17649);
             Assert.AreEqual(1, a);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ValidateProofTest()
         {
-            var p = new Proofer();
+            var p = new ProofHandler();
 
             var a = p.ValidateProof(17649, 1);
             Assert.AreEqual(true, a);

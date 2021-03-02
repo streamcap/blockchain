@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Blockchain.Business.Model;
 using Newtonsoft.Json;
 
 namespace Blockchain.Business

@@ -1,8 +1,8 @@
 ﻿namespace Blockchain.Business
 {
-    public interface IProofer
+    public interface IProofHandler
     {
         int GetProofOfWork(int lastProof);
-        bool ValidateProof(int lastproof, int proof);
+        bool ValidateProof(int lastProof, int proof);
     }
 }

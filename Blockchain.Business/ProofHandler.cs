@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Blockchain.Business
 {
-    public class Proofer : IProofer
+    public class ProofHandler : IProofHandler
     {
         public int GetProofOfWork(int lastProof)
         {
@@ -15,9 +15,9 @@ namespace Blockchain.Business
             return proof;
         }
 
-        public bool ValidateProof(int lastproof, int proof)
+        public bool ValidateProof(int lastProof, int proof)
         {
-            var guess = Encoding.UTF8.GetBytes($"{lastproof}{proof}");
+            var guess = Encoding.UTF8.GetBytes($"{lastProof}{proof}");
             var guessHash = SHA256.Create().ComputeHash(guess);
             var hashLine = Hasher.GetHexString(guessHash);
             var result = hashLine.StartsWith("1111");

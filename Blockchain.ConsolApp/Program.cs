@@ -2,17 +2,17 @@
 using System;
 using System.Linq;
 
-namespace Blockchain.ConsolApp
+namespace Blockchain.ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
 
-            var proofer = new Proofer();
+            var proofHandler = new ProofHandler();
 
-            var blockchain = new Business.Blockchain(proofer);
+            var blockchain = new Business.Blockchain(proofHandler);
 
             Console.WriteLine("Created new Blockchain...");
 
@@ -75,7 +75,7 @@ namespace Blockchain.ConsolApp
             var previousProof = 100;
             foreach (var block in blockchain.Chain)
             {
-                Console.WriteLine($"Proof is {block.Proof} - Valid? {proofer.ValidateProof(previousProof, block.Proof)}, good hash? {previousHash == block.PreviousHash}.");
+                Console.WriteLine($"Proof is {block.Proof} - Valid? {proofHandler.ValidateProof(previousProof, block.Proof)}, good hash? {previousHash == block.PreviousHash}.");
                 previousHash = Hasher.CreateHash(block);
                 previousProof = block.Proof;
             }
