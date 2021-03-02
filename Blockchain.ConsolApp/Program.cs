@@ -1,6 +1,7 @@
 ﻿using Blockchain.Business;
 using System;
 using System.Linq;
+using System.Net.Http;
 
 namespace Blockchain.ConsoleApp
 {
@@ -12,7 +13,7 @@ namespace Blockchain.ConsoleApp
 
             var proofHandler = new ProofHandler();
 
-            var blockchain = new Business.Blockchain(proofHandler);
+            var blockchain = new Business.Blockchain(proofHandler, new BlockchainNetworkClient(new HttpClient()));
 
             Console.WriteLine("Created new Blockchain...");
 
