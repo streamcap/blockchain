@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Business", "Blockchain.Business\Blockchain.Business.csproj", "{0C54D642-7F91-49DE-ABDF-75A0078784F4}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.ConsoleApp", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.BusinessTests", "Blockchain.BusinessTests\Blockchain.BusinessTests.csproj", "{2068152B-90B1-466F-B9FE-E449C162758F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Api", "Blockchain.Api\Blockchain.Api.csproj", "{54B423C8-139E-45A3-B8AA-D35C9544B1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blockchain.Api", "Blockchain.Api\Blockchain.Api.csproj", "{54B423C8-139E-45A3-B8AA-D35C9544B1D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Api2", "Blockchain.Api2\Blockchain.Api2.csproj", "{15681A00-16D3-49E1-84DD-1D5DF2A45E11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{54B423C8-139E-45A3-B8AA-D35C9544B1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54B423C8-139E-45A3-B8AA-D35C9544B1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B423C8-139E-45A3-B8AA-D35C9544B1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15681A00-16D3-49E1-84DD-1D5DF2A45E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15681A00-16D3-49E1-84DD-1D5DF2A45E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15681A00-16D3-49E1-84DD-1D5DF2A45E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15681A00-16D3-49E1-84DD-1D5DF2A45E11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

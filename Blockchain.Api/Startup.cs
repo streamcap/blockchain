@@ -21,9 +21,10 @@ namespace Blockchain.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new HttpClient());
-            services.AddTransient<BlockchainNetworkClient>();
+            services.AddTransient<IBlockchainNetworkClient, BlockchainNetworkClient>();
             services.AddTransient<IProofHandler, ProofHandler>();
             services.AddTransient<Business.Blockchain>();
+            services.AddSwaggerGen();
             services.AddControllers();
         }
 
@@ -33,6 +34,8 @@ namespace Blockchain.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseRouting();
